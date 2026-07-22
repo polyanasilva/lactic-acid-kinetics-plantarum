@@ -15,9 +15,9 @@ $$\mu = \mu_{max}\left(1 - e^{-S/K_S}\right)$$
 
 Sistema de EDOs a partir dos balanços de massa (batelada):
 
-$$\frac{dX}{dt} = (\mu - k_d)\,X \qquad
-\frac{dS}{dt} = -\frac{\mu}{Y_{X/S}}\,X \qquad
-\frac{dP}{dt} = \frac{\mu\,Y_{P/S}}{Y_{X/S}}\,X$$
+$$\frac{dX}{dt} = (\mu - k_d)\ X \qquad
+\frac{dS}{dt} = -\frac{\mu}{Y_{X/S}}\ X \qquad
+\frac{dP}{dt} = \frac{\mu\,Y_{P/S}}{Y_{X/S}}\ X$$
 
 onde `X` = biomassa, `S` = substrato (glicose) e `P` = ácido lático (g/L).
 
