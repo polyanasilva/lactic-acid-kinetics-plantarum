@@ -7,6 +7,8 @@ for the specific growth rate. Implemented in **GNU Octave**.
 Assignment for the course *Computational Modeling and Simulation of Biotechnological
 Processes* — Faculty of Biotechnology, UFPA (Prof. Bruno Viegas).
 
+📄 **Full Report:** The complete written report and discussion of results are available in the [artigo.pdf](artigo.pdf) file.
+
 ## Model
 
 Specific growth rate (Tessier):
@@ -50,12 +52,14 @@ the fit improves to **R² = 0.985**.
 ## Structure
 
 ```
-src/
-├── fun_tessier.m            function containing the system of ODEs (Tessier model)
-├── main.m                   simulation with nominal parameters from the assignment
-├── estimacao_parametros.m   parameter reestimation + K_S sensitivity analysis
-└── gerar_figuras.m          generates figures for the figures/ folder
-figuras/                     result plots (.png and .pdf)
+lactic-acid-kinetics-plantarum/
+├── src/                     
+│   ├── fun_tessier.m            # function containing the system of ODEs (Tessier model)
+|   ├── main.m                   # simulation with nominal parameters from the assignment
+|   ├── parameter_estimation.m   # parameter reestimation + K_S sensitivity analysis
+|   └── generate_figures.m       # generates figures for the figures/ folder
+├── figures/                     # result plots (.png and .pdf)
+├── artigo.pdf                   # full written report of the project
 ```
 
 ## How to Run
@@ -65,6 +69,6 @@ Requires [GNU Octave](https://octave.org/) (tested on version 11.3.0).
 ```bash
 cd src
 octave main.m                    # simulation with nominal parameters
-octave estimacao_parametros.m    # parameter fitting and metrics
-octave gerar_figuras.m           # regenerate figures
+octave parameter_estimation.m    # parameter fitting and metrics
+octave generate_figures.m        # regenerate figures
 ```
