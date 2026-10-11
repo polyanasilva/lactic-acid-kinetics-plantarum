@@ -37,15 +37,15 @@ the fit improves to **R² = 0.985**.
 
 **Dynamics of X, S, and P** — adjusted model (solid line) vs. nominal (dashed) vs. experimental (points):
 
-![Concentration dynamics](figuras/fig_ajuste.png)
+![Concentration dynamics](figures/fig_fit.png)
 
 **Specific growth rate μ(S)** — nominal overestimates growth across the entire measured range:
 
-![Specific growth rate](figuras/fig_mu.png)
+![Specific growth rate](figures/fig_mu.png)
 
 **Predicted vs. Experimental Parity** (±15% band):
 
-![Parity plot](figuras/fig_paridade.png)
+![Parity plot](figures/fig_parity.png)
 
 ## Structure
 
