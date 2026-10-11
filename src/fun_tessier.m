@@ -1,61 +1,61 @@
 function [dy] = fun_tessier(t, y)
-    % Função que calcula as derivadas do sistema de fermentação
-    % Modelo: Tessier com morte celular
-    % y(1) = X (biomassa, g/L)
-    % y(2) = S (substrato - glicose, g/L)
-    % y(3) = P (produto - ácido lático, g/L)
+    % Function that calculates the derivatives of the fermentation system
+    % Model: Tessier with cell death
+    % y(1) = X (biomass, g/L)
+    % y(2) = S (substrate - glucose, g/L)
+    % y(3) = P (product - lactic acid, g/L)
 
     global Yxs Yps umax Ks kd
 
-    % Extração das variáveis de estado
-    X = y(1);  % Concentração de biomassa (g/L)
-    S = y(2);  % Concentração de substrato (g/L)
-    P = y(3);  % Concentração de produto (g/L)
+    % State variable extraction
+    X = y(1);  % Biomass concentration (g/L)
+    S = y(2);  % Substrate concentration (g/L)
+    P = y(3);  % Product concentration (g/L)
 
-    % Proteções numéricas (aplicadas ANTES de calcular mu)
+    % Numerical safeguards (applied BEFORE calculating mu)
     if X < 1e-6
-        X = 1e-6;  % Evita biomassa nula/negativa
+        X = 1e-6;  % Prevents zero or negative biomass
     end
     if S < 0
-        S = 0;     % Substrato não pode ser negativo
+        S = 0;     % Substrate concentration cannot be negative
     end
 
     %=====================================================================
-    % MODELO CINÉTICO: TESSIER
+    % KINETIC MODEL: TESSIER
     %=====================================================================
     % μ = μmax * (1 - exp(-S/Ks))
-    % Características:
-    % - Cresce monotonicamente com S
-    % - Melhor ajuste para bactérias láticas
-    % - Menos sensível a altos valores de S (sem inibição)
+    % Characteristics:
+    % - Increases monotonically with S
+    % - Superior fit for lactic acid bacteria
+    % - Less sensitive to high S values (no substrate inhibition)
 
     mu = umax * (1 - exp(-S / Ks));
 
     %=====================================================================
-    % SISTEMA DE EQUAÇÕES DIFERENCIAIS
+    % SYSTEM OF DIFFERENTIAL EQUATIONS
     %=====================================================================
-    % Balanço de Massa para BIOMASSA
+    % Mass Balance for BIOMASS
     % dX/dt = (μ - kd) * X
-    % crescimento - morte
+    % growth - cell death
 
     dXdt = (mu - kd) * X;
 
     %=====================================================================
-    % Balanço de Massa para SUBSTRATO
+    % Mass Balance for SUBSTRATE
     % dS/dt = -(1/Yxs) * μ * X
-    % Consumo de substrato para crescimento celular
+    % Substrate consumption for cellular growth
 
     dSdt = -(1 / Yxs) * mu * X;
 
     %=====================================================================
-    % Balanço de Massa para PRODUTO
+    % Mass Balance for PRODUCT
     % dP/dt = (Yps / Yxs) * μ * X
-    % Produção de ácido lático associada ao crescimento
+    % Lactic acid production associated with growth
 
     dPdt = (Yps / Yxs) * mu * X;
 
     %=====================================================================
-    % Montagem do vetor de derivadas
+    % Assembly of the derivative vector
     %=====================================================================
     dy = [dXdt; dSdt; dPdt];
 
